@@ -11,7 +11,6 @@ function HomePage() {
       setArticles([...articles]);
     }
     getAllArticles();
-    console.log(articles);
   }, []);
   return (
     <main className="ArticlesBlock">
