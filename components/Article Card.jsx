@@ -8,9 +8,8 @@ function ArticleCard({ article }) {
   return (
     <article className="articleCard">
       <Link to={`/articles/${article.article_id}`}>
-        <a>
-          <h2>{article.title}</h2>
-        </a>
+        <h2>{article.title}</h2>
+
         <img src={article.article_img_url} alt="image for article" />
       </Link>
       <div>
