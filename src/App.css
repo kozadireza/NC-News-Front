@@ -1,0 +1,41 @@
+html,
+body {
+  display: block;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  width: 100%;
+  text-align: center;
+  border-bottom: solid 5px #1b2d45;
+}
+main {
+  width: 80%;
+  min-width: 1400px;
+  margin: 0 auto;
+  /* border: solid 1px rgb(94, 94, 94); */
+}
+
+.ArticlesBlock {
+  margin: auto;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.articleCard {
+  /* border: solid 1px rgb(208, 0, 0); */
+}
+
+@media (max-width: 768px) {
+  main {
+    width: 95%;
+    min-width: unset;
+  }
+
+  .ArticlesBlock {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
