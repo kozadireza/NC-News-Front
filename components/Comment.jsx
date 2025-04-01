@@ -1,5 +1,4 @@
 function Comment({ comment }) {
-  console.log(comment);
   return (
     <div>
       <section id="commentInfo">
