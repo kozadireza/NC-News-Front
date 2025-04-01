@@ -60,6 +60,14 @@ p {
   font-family: "p";
   text-align: justify;
 }
+#commentInfo {
+  display: flex;
+  padding: 0px;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  background-color: azure;
+}
 @media only screen and (max-width: 700px) {
   .responsive {
     width: 49.99999%;
