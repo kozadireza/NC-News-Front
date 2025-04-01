@@ -18,5 +18,12 @@ const getArticleById = (article_id) => {
     return data.article;
   });
 };
-const functions = { getUserByName, getArticles, getArticleById };
+
+const getComments = (article_id) => {
+  return axios.get(url + `articles/${article_id}/comments`).then(({ data }) => {
+    console.log(data);
+    return data.comments;
+  });
+};
+const functions = { getUserByName, getArticles, getArticleById, getComments };
 export default functions;
