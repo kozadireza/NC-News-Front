@@ -13,7 +13,6 @@ function useDataApi(fetchFunction, ...args) {
         const data = await fetchFunction(...args);
         setData(data);
       } catch (err) {
-        console.log(err);
         setIsError(true);
         return err;
       } finally {

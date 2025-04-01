@@ -45,6 +45,15 @@ main {
   display: inline-block;
 }
 
+#likeButton {
+  display: block;
+  /* background-image: url(../assets/Buttons/likeButton.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; */
+
+  margin: 0px;
+}
 .gallery {
   border: 1px solid #d3cd12;
   margin-left: 10%;

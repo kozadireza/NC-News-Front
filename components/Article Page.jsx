@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import functions from "../Utils/data.fetching";
 import Comment from "./Comment";
@@ -14,7 +14,7 @@ function ArticlePage() {
     isError: commentsError,
     fetchData: fetchCommentsForArticle,
   } = useDataApi(functions.getComments, article_id);
-  console.log(comments);
+
   const {
     data: article,
     isLoading,
@@ -28,6 +28,26 @@ function ArticlePage() {
       fetchCommentsForArticle(article_id);
     }
     setShowComments(!showComments);
+  }
+
+  const [totalVotes, setTotalVotes] = useState(0);
+
+  useEffect(() => {
+    if (article.votes !== undefined) {
+      setTotalVotes(article.votes);
+    }
+  }, [article.votes]);
+
+  async function handle1Vote() {
+    try {
+      setTotalVotes((prev) => prev + 1);
+      await functions.patchArticleById(article_id, {
+        inc_votes: 1,
+      });
+    } catch (err) {
+      alert(err);
+      setTotalVotes((prev) => prev - 1);
+    }
   }
 
   if (isLoading) {
@@ -52,9 +72,18 @@ function ArticlePage() {
           <h5 className="navElements">
             Author: <a>{article.author}</a>{" "}
           </h5>
+          <h5 className="navElements">
+            Author: <a>{article.author}</a>{" "}
+          </h5>
           <h5 onClick={handleComments} className="navElements">
             <a href="">Comments</a>
           </h5>
+          <h5 className="navElements">
+            Votes: <a>{totalVotes}</a>{" "}
+          </h5>
+          <button onClick={handle1Vote} className="navElements" id="likeButton">
+            +1 Vote
+          </button>
         </div>
       </div>
       <div id="article_body">

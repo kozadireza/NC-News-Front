@@ -12,6 +12,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/articles" element={<HomePage />} />
           <Route path="articles/:article" element={<ArticlePage />} />
         </Routes>
       </UserDataProvider>
