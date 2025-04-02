@@ -6,6 +6,7 @@ import useDataApi from "../hooks/fetchData.jsx";
 
 function ArticlePage() {
   const [showComments, setShowComments] = useState(false);
+  const [localComments, setLocalComments] = useState([]);
   //Article
   const article_id = useParams().article;
 
@@ -51,14 +52,6 @@ function ArticlePage() {
       setTotalVotes((prev) => prev - 1);
     }
   }
-  // Add comment
-  const [localComments, setLocalComments] = useState([]);
-
-  useEffect(() => {
-    if (comments) {
-      setLocalComments(comments);
-    }
-  }, [comments]);
 
   ///hide/open the form
   const [addNewCommentButton, setAddNewCommentButton] = useState(false);
@@ -90,16 +83,15 @@ function ArticlePage() {
   /// form submitting
   async function handleNewComment(event) {
     event.preventDefault();
-    console.log(Object.values(dataOfComment).length);
+
     if (Object.values(dataOfComment).length >= 2) {
-      console.log("submitted");
       setIsCommentPosting(true);
       try {
         const newComment = await functions.postNewComment(
           article_id,
           dataOfComment
         );
-        console.log(newComment);
+
         setLocalComments([newComment, ...localComments]);
       } catch (err) {
         alert("Error, try later!");
@@ -111,6 +103,40 @@ function ArticlePage() {
       alert("No enough data provided!");
     }
   }
+
+  // comment deletion
+  const [activeCommentID, setActiveCommentID] = useState(null);
+  useEffect(() => {
+    if (activeCommentID !== null) {
+      async function deletingComment(activeCommentID) {
+        const originalLocalComments = [...localComments];
+        const prevLocalComments = [...localComments];
+
+        var filteredComments = prevLocalComments.filter((comment) => {
+          return comment.comment_id !== activeCommentID;
+        });
+        setLocalComments(filteredComments);
+        try {
+          await functions.deleteComment(activeCommentID);
+        } catch (err) {
+          setLocalComments(originalLocalComments);
+          alert("Delete failed !");
+        } finally {
+          setActiveCommentID(null);
+        }
+      }
+      deletingComment(activeCommentID);
+    }
+  }, [activeCommentID]);
+
+  // Add comment
+
+  useEffect(() => {
+    if (comments) {
+      setLocalComments(comments);
+    }
+  }, [comments, activeCommentID]);
+
   if (isCommentPosting) {
     return <h1>Comment is posting....</h1>;
   }
@@ -136,9 +162,7 @@ function ArticlePage() {
           <h5 className="navElements">
             Author: <a>{article.author}</a>{" "}
           </h5>
-          <h5 className="navElements">
-            Author: <a>{article.author}</a>{" "}
-          </h5>
+
           <h5 onClick={handleComments} className="navElements">
             <a href="">Comments</a>
           </h5>
@@ -179,7 +203,10 @@ function ArticlePage() {
               {localComments.map((comment) => {
                 return (
                   <li key={comment.comment_id}>
-                    <Comment comment={comment} />
+                    <Comment
+                      comment={comment}
+                      setActiveCommentID={setActiveCommentID}
+                    />
                   </li>
                 );
               })}
