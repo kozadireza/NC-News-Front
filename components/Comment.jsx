@@ -4,8 +4,6 @@ import { UserDataContext } from "../COntexts/UserDataContext";
 function Comment({ comment, setActiveCommentID }) {
   const { user } = useContext(UserDataContext);
 
-  console.log(user);
-
   function handleActiveCommentID() {
     if (comment.author === user.username) {
       setActiveCommentID(comment.comment_id);

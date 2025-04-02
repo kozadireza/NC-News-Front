@@ -20,7 +20,6 @@ function LoginPage() {
     event.preventDefault();
     const regex = /^(?=[a-zA-Z0-9_]{3,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
 
-    console.log(input);
     //validation of userName
     if (!regex.test(input) && input.length > 0) {
       setIsInputValid(false);
@@ -34,7 +33,6 @@ function LoginPage() {
   ///is User in DB
   useEffect(() => {
     if (localUserName.length > 0) {
-      console.log(localUserName);
       async function getUserInf(localUserName) {
         try {
           const userInf = await functions.getUserByName(localUserName);
@@ -50,8 +48,6 @@ function LoginPage() {
     }
     setInput("");
   }, [localUserName]);
-
-  console.log(user);
 
   return (
     <main>

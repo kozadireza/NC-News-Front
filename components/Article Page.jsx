@@ -83,16 +83,15 @@ function ArticlePage() {
   /// form submitting
   async function handleNewComment(event) {
     event.preventDefault();
-    console.log(Object.values(dataOfComment).length);
+
     if (Object.values(dataOfComment).length >= 2) {
-      console.log("submitted");
       setIsCommentPosting(true);
       try {
         const newComment = await functions.postNewComment(
           article_id,
           dataOfComment
         );
-        console.log(newComment);
+
         setLocalComments([newComment, ...localComments]);
       } catch (err) {
         alert("Error, try later!");
@@ -112,7 +111,7 @@ function ArticlePage() {
       async function deletingComment(activeCommentID) {
         const originalLocalComments = [...localComments];
         const prevLocalComments = [...localComments];
-        console.log(originalLocalComments === prevLocalComments);
+
         var filteredComments = prevLocalComments.filter((comment) => {
           return comment.comment_id !== activeCommentID;
         });
@@ -120,7 +119,6 @@ function ArticlePage() {
         try {
           await functions.deleteComment(activeCommentID);
         } catch (err) {
-          console.log(originalLocalComments);
           setLocalComments(originalLocalComments);
           alert("Delete failed !");
         } finally {

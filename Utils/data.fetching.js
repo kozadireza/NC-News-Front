@@ -5,9 +5,7 @@ const apiRequest = axios.create({
 });
 
 const getUserByName = (userName) => {
-  console.log(userName);
   return apiRequest.get(`users/${userName}`).then(({ data }) => {
-    console.log(data);
     return data.user_data;
   });
 };
@@ -44,7 +42,6 @@ const postNewComment = (article_id, commentInf) => {
     });
 };
 const deleteComment = (comment_id) => {
-  console.log(comment_id);
   return apiRequest.delete(`/comments/${comment_id}`).then(() => {
     return "comment was deleted";
   });
