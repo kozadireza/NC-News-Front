@@ -6,20 +6,22 @@ import useDataApi from "../hooks/fetchData.jsx";
 
 function ArticlePage() {
   const [showComments, setShowComments] = useState(false);
-
+  //Article
   const article_id = useParams().article;
-  const {
-    data: comments,
-    isLoading: commentsLoading,
-    isError: commentsError,
-    fetchData: fetchCommentsForArticle,
-  } = useDataApi(functions.getComments, article_id);
 
   const {
     data: article,
     isLoading,
     isError,
   } = useDataApi(functions.getArticleById, article_id);
+
+  //Comments
+  const {
+    data: comments,
+    isLoading: commentsLoading,
+    isError: commentsError,
+    fetchData: fetchCommentsForArticle,
+  } = useDataApi(functions.getComments, article_id);
 
   function handleComments(event) {
     event.preventDefault();
@@ -29,7 +31,7 @@ function ArticlePage() {
     }
     setShowComments(!showComments);
   }
-
+  ////Votes
   const [totalVotes, setTotalVotes] = useState(0);
 
   useEffect(() => {
@@ -49,7 +51,69 @@ function ArticlePage() {
       setTotalVotes((prev) => prev - 1);
     }
   }
+  // Add comment
+  const [localComments, setLocalComments] = useState([]);
 
+  useEffect(() => {
+    if (comments) {
+      setLocalComments(comments);
+    }
+  }, [comments]);
+
+  ///hide/open the form
+  const [addNewCommentButton, setAddNewCommentButton] = useState(false);
+
+  function handleInputForComment() {
+    setAddNewCommentButton(!addNewCommentButton);
+  }
+
+  //getting data from input
+  const [dataOfComment, setDataOfComment] = useState(null);
+  const [isCommentPosting, setIsCommentPosting] = useState(false);
+  const [checkInput, setCheckInput] = useState(true);
+
+  function handleInputs(event) {
+    const regex = /^(?=[a-zA-Z0-9_]{3,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
+
+    if (
+      !regex.test(event.target.value) &&
+      event.target.name === "author" &&
+      event.target.value.length !== 0
+    ) {
+      setCheckInput(false);
+    } else {
+      setCheckInput(true);
+      const { name, value } = event.target;
+      setDataOfComment((prev) => ({ ...prev, [name]: value }));
+    }
+  }
+  /// form submitting
+  async function handleNewComment(event) {
+    event.preventDefault();
+    console.log(Object.values(dataOfComment).length);
+    if (Object.values(dataOfComment).length >= 2) {
+      console.log("submitted");
+      setIsCommentPosting(true);
+      try {
+        const newComment = await functions.postNewComment(
+          article_id,
+          dataOfComment
+        );
+        console.log(newComment);
+        setLocalComments([newComment, ...localComments]);
+      } catch (err) {
+        alert("Error, try later!");
+      } finally {
+        setDataOfComment(null);
+        setIsCommentPosting(false);
+      }
+    } else {
+      alert("No enough data provided!");
+    }
+  }
+  if (isCommentPosting) {
+    return <h1>Comment is posting....</h1>;
+  }
   if (isLoading) {
     return <h1>Articles is loading....</h1>;
   }
@@ -93,15 +157,34 @@ function ArticlePage() {
         {commentsLoading ? <p> Comments is Loading...</p> : null}
         {commentsError ? <p>Something went wrong!</p> : null}
         {comments.length > 0 && showComments ? (
-          <ul>
-            {comments.map((comment) => {
-              return (
-                <li key={comment.comment_id}>
-                  <Comment comment={comment} />
-                </li>
-              );
-            })}
-          </ul>
+          <div>
+            <button onClick={handleInputForComment}>Add new comment</button>
+            {addNewCommentButton ? (
+              <form name="addNewCommentForm" onSubmit={handleNewComment}>
+                <label htmlFor="body">Add new comment </label>
+                <input onChange={handleInputs} type="text" name="body" />
+                <div className="formInputsWithError">
+                  <label htmlFor="author">Author name </label>
+                  <input onChange={handleInputs} type="text" name="author" />
+                  {!checkInput ? (
+                    <div className="inputErr">
+                      <p>Invalid username</p>
+                    </div>
+                  ) : null}
+                </div>
+                <button type="submit">Post</button>
+              </form>
+            ) : null}
+            <ul>
+              {localComments.map((comment) => {
+                return (
+                  <li key={comment.comment_id}>
+                    <Comment comment={comment} />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         ) : comments.length === 0 && showComments ? (
           <p>No comments found!</p>
         ) : null}

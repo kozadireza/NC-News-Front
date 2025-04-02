@@ -13,7 +13,7 @@ function ArticleCard({ article }) {
         <img src={article.article_img_url} alt="image for article" />
       </Link>
       <div>
-        <h5>Topic: {<a>{article.topic}</a>}</h5>
+        <h5>Topic: {<a href="">{article.topic}</a>}</h5>
 
         <h5>
           Author: <a>{article.author}</a>{" "}

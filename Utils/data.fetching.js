@@ -24,7 +24,6 @@ const patchArticleById = (article_id, updatingInf) => {
   return apiRequest
     .patch(`articles/${article_id}`, updatingInf)
     .then(({ data }) => {
-      console.log(data);
       return data.article;
     });
 };
@@ -34,11 +33,20 @@ const getComments = (article_id) => {
     return data.comments;
   });
 };
+
+const postNewComment = (article_id, commentInf) => {
+  return apiRequest
+    .post(`articles/${article_id}/comments`, commentInf)
+    .then(({ data }) => {
+      return data.comment;
+    });
+};
 const functions = {
   getUserByName,
   getArticles,
   getArticleById,
   getComments,
   patchArticleById,
+  postNewComment,
 };
 export default functions;
