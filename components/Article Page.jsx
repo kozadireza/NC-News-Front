@@ -157,7 +157,8 @@ function ArticlePage() {
         </div>
         <div id="navArticle">
           <h5 className="navElements">
-            Topic: <a>{article.topic}</a>
+            Topic:{" "}
+            <a href={`/articles?topic=${article.topic}`}>{article.topic}</a>
           </h5>
           <h5 className="navElements">
             Author: <a>{article.author}</a>{" "}

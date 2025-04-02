@@ -15,6 +15,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login_page" element={<LoginPage />} />
           <Route path="/articles" element={<HomePage />} />
+
           <Route path="articles/:article" element={<ArticlePage />} />
         </Routes>
       </UserDataProvider>

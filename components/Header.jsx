@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserDataContext } from "../COntexts/UserDataContext";
-
+import { useSearchParams } from "react-router-dom";
 useNavigate;
 function Header() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const nav = useNavigate();
   const { user, setUser } = useContext(UserDataContext);
   function handleLogin() {
+    searchParams.set(null);
     nav("/login_page");
   }
   function handleLogout() {
