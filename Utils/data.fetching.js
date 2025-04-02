@@ -24,7 +24,6 @@ const patchArticleById = (article_id, updatingInf) => {
   return apiRequest
     .patch(`articles/${article_id}`, updatingInf)
     .then(({ data }) => {
-      console.log(data);
       return data.article;
     });
 };

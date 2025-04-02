@@ -70,7 +70,7 @@ function ArticlePage() {
   //getting data from input
   const [dataOfComment, setDataOfComment] = useState(null);
   const [isCommentPosting, setIsCommentPosting] = useState(false);
-  const [checkInput, setCheckInput] = useState(false);
+  const [checkInput, setCheckInput] = useState(true);
 
   function handleInputs(event) {
     const regex = /^(?=[a-zA-Z0-9_]{3,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
