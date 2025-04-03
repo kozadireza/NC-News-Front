@@ -15,6 +15,11 @@ const getArticles = () => {
     return data.articles;
   });
 };
+const getArticlesByTopic = (topic) => {
+  return apiRequest.get(`articles?topic=${topic}`).then(({ data }) => {
+    return data.articles;
+  });
+};
 const getArticleById = (article_id) => {
   return apiRequest.get(`articles/${article_id}`).then(({ data }) => {
     return data.article;
@@ -54,5 +59,6 @@ const functions = {
   patchArticleById,
   postNewComment,
   deleteComment,
+  getArticlesByTopic,
 };
 export default functions;

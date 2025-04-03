@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { UserDataContext } from "../COntexts/UserDataContext";
 import { useSearchParams } from "react-router-dom";
 useNavigate;
-function Header() {
-  const [searchParams, setSearchParams] = useSearchParams();
+function Header({ setSelectedTopic }) {
   const nav = useNavigate();
   const { user, setUser } = useContext(UserDataContext);
   function handleLogin() {
@@ -15,6 +14,7 @@ function Header() {
     setUser("unauthorised");
   }
   function handleHomePage() {
+    setSelectedTopic(null);
     nav("/");
   }
   return (

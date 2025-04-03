@@ -1,40 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
 import functions from "../Utils/data.fetching";
 
 import ArticleCard from "./Article Card";
 import useDataApi from "../hooks/fetchData";
-import { useSearchParams } from "react-router-dom";
 
-function HomePage() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedTopic, setSelectedTopic] = useState(null);
-  console.log(selectedTopic);
-  if (selectedTopic !== null) {
-    setSearchParams("topic", selectedTopic);
-  }
+function HomePage({ selectedTopic, setSelectedTopic }) {
+  const argsFotDataApi =
+    selectedTopic === null
+      ? [functions.getArticles, null]
+      : [functions.getArticlesByTopic, selectedTopic];
 
-  // useEffect(() => {
-  //   if (selectedTopic !== null) {
-  //     searchParams.set("topic", selectedTopic);
-  //   } else {
-  //     searchParams.delete("topic");
-  //   }
-  //   setSearchParams(searchParams);
-  // }, [selectedTopic]);
-  console.log(searchParams);
-  const {
-    data: articles = [],
-    isLoading,
-    isError,
-  } = useDataApi(functions.getArticles);
-
-  const filteredArticles = useMemo(() => {
-    return selectedTopic !== null
-      ? articles.filter((article) => {
-          return article.topic === selectedTopic;
-        })
-      : articles;
-  }, [articles, selectedTopic]);
+  const { data: articles, isLoading, isError } = useDataApi(...argsFotDataApi);
 
   if (isLoading) {
     return <h1>Articles is loading....</h1>;
@@ -45,7 +20,7 @@ function HomePage() {
   }
   return (
     <main className="ArticlesBlock">
-      {filteredArticles.map((article) => {
+      {articles.map((article) => {
         return (
           <ArticleCard
             key={article.article_id}
