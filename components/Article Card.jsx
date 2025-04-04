@@ -1,14 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 
-function ArticleCard({ article, setSelectedTopic }) {
+function ArticleCard({ article }) {
   const navigate = useNavigate();
   const handleButtonReadMore = () => {
     navigate(`/articles/${article.article_id}`);
   };
 
-  function handleTopic() {
-    setSelectedTopic(article.topic);
-  }
   return (
     <article className="articleCard">
       <Link to={`/articles/${article.article_id}`}>
@@ -17,12 +14,16 @@ function ArticleCard({ article, setSelectedTopic }) {
         <img src={article.article_img_url} alt="image for article" />
       </Link>
       <div>
-        <h5>
-          Topic: {<button onClick={handleTopic}> {article.topic}</button>}
-        </h5>
+        <h5>Topic: {article.topic}</h5>
 
         <h5>
           Author: <a>{article.author}</a>{" "}
+        </h5>
+        <h5>
+          Votes: <a>{article.votes}</a>{" "}
+        </h5>
+        <h5>
+          Comments: <a>{article.article_comments}</a>{" "}
         </h5>
         <button onClick={handleButtonReadMore}>Read article</button>
       </div>

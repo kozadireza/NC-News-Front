@@ -1,20 +1,19 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserDataContext } from "../COntexts/UserDataContext";
-import { useSearchParams } from "react-router-dom";
+
 useNavigate;
-function Header({ setSelectedTopic }) {
+function Header({ setFilterAndSortParams }) {
   const nav = useNavigate();
   const { user, setUser } = useContext(UserDataContext);
   function handleLogin() {
-    searchParams.set(null);
     nav("/login_page");
   }
   function handleLogout() {
     setUser("unauthorised");
   }
   function handleHomePage() {
-    setSelectedTopic(null);
+    setFilterAndSortParams({ order: null, topic: null, sort_by: null });
     nav("/");
   }
   return (

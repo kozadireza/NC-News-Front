@@ -2,19 +2,32 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import functions from "../Utils/data.fetching";
 import Comment from "./Comment";
-import useDataApi from "../hooks/fetchData.jsx";
+import useFetchComments from "../hooks/fetchComments";
+import ErrorPage from "./ErrorPage";
 
 function ArticlePage() {
   const [showComments, setShowComments] = useState(false);
   const [localComments, setLocalComments] = useState([]);
+  const [article, setArticle] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   //Article
-  const article_id = useParams().article;
+  const { article_id } = useParams();
 
-  const {
-    data: article,
-    isLoading,
-    isError,
-  } = useDataApi(functions.getArticleById, article_id);
+  useEffect(() => {
+    async function getArticle() {
+      try {
+        setIsLoading(true);
+        setIsError(false);
+        const article = await functions.getArticleById(article_id);
+        setArticle(article);
+      } catch (err) {
+        setIsError(true);
+      }
+    }
+    getArticle(article_id);
+    setIsLoading(false);
+  }, []);
 
   //Comments
   const {
@@ -22,7 +35,7 @@ function ArticlePage() {
     isLoading: commentsLoading,
     isError: commentsError,
     fetchData: fetchCommentsForArticle,
-  } = useDataApi(functions.getComments, article_id);
+  } = useFetchComments(article_id);
 
   function handleComments(event) {
     event.preventDefault();
@@ -141,10 +154,10 @@ function ArticlePage() {
     return <h1>Comment is posting....</h1>;
   }
   if (isLoading) {
-    return <h1>Articles is loading....</h1>;
+    return <h1>Article is loading....</h1>;
   }
   if (isError) {
-    return <h1>Error</h1>;
+    return <ErrorPage />;
   }
   return (
     <main>
@@ -164,9 +177,9 @@ function ArticlePage() {
             Author: <a>{article.author}</a>{" "}
           </h5>
 
-          <h5 onClick={handleComments} className="navElements">
-            <a href="">Comments</a>
-          </h5>
+          <button onClick={handleComments} className="navElements clickable">
+            Comments
+          </button>
           <h5 className="navElements">
             Votes: <a>{totalVotes}</a>{" "}
           </h5>

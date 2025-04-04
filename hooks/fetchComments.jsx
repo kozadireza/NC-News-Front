@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import functions from "../Utils/data.fetching";
 
-function useDataApi(filterAndSortParams) {
+function useFetchComments(articleID) {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [isError, setIsError] = useState(false);
 
-  const { topic, order, sort_by } = filterAndSortParams;
   useEffect(() => {
     async function fetchData() {
       setIsError(false);
       setIsLoading(true);
       try {
-        const data = await functions.getArticles(filterAndSortParams);
+        const data = await functions.getComments(articleID);
         setData(data);
       } catch (err) {
         setIsError(true);
@@ -22,8 +21,8 @@ function useDataApi(filterAndSortParams) {
       }
     }
     fetchData();
-  }, [topic, order, sort_by]);
+  }, [articleID]);
 
   return { data, isLoading, isError };
 }
-export default useDataApi;
+export default useFetchComments;

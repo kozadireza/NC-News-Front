@@ -10,16 +10,14 @@ const getUserByName = (userName) => {
   });
 };
 
-const getArticles = () => {
-  return apiRequest.get(`articles`).then(({ data }) => {
+const getArticles = (filterAndSortParams) => {
+  const query = new URLSearchParams(filterAndSortParams).toString();
+  const url = `articles?${query}`;
+  return apiRequest.get(url).then(({ data }) => {
     return data.articles;
   });
 };
-const getArticlesByTopic = (topic) => {
-  return apiRequest.get(`articles?topic=${topic}`).then(({ data }) => {
-    return data.articles;
-  });
-};
+
 const getArticleById = (article_id) => {
   return apiRequest.get(`articles/${article_id}`).then(({ data }) => {
     return data.article;
@@ -51,6 +49,12 @@ const deleteComment = (comment_id) => {
     return "comment was deleted";
   });
 };
+
+const getTopics = () => {
+  return apiRequest.get(`topics`).then(({ data }) => {
+    return data.topics;
+  });
+};
 const functions = {
   getUserByName,
   getArticles,
@@ -59,6 +63,6 @@ const functions = {
   patchArticleById,
   postNewComment,
   deleteComment,
-  getArticlesByTopic,
+  getTopics,
 };
 export default functions;
