@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { UserDataContext } from "../COntexts/UserDataContext";
 
 useNavigate;
-function Header() {
+function Header({ setFilterAndSortParams }) {
   const nav = useNavigate();
   const { user, setUser } = useContext(UserDataContext);
   function handleLogin() {
@@ -13,6 +13,7 @@ function Header() {
     setUser("unauthorised");
   }
   function handleHomePage() {
+    setFilterAndSortParams({ order: null, topic: null, sort_by: null });
     nav("/");
   }
   return (
