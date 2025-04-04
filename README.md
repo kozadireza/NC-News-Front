@@ -1,12 +1,73 @@
-# React + Vite
+# 📰 NC News Front-End
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **NC News**, a Reddit-style news app where users can explore articles, filter by topic, sort content, and interact through comments and votes.
 
-Currently, two official plugins are available:
+🔗 **Live Site**: [https://nc-news-with-kozadireza.netlify.app/](https://nc-news-with-kozadireza.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 **Back-End Repo**: [https://github.com/kozadireza/NC-News](https://github.com/kozadireza/NC-News)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📌 About the Project
+
+This is the **frontend** application built using **React** with **React Router**, **Axios**, and deployed on **Netlify**. The app consumes a RESTful API built with **Node.js**, **Express**, and **PostgreSQL**, hosted on **Render**.
+
+With NC News, users can:
+
+- Browse all articles or filter by topic
+- Sort articles by date, comments, votes, etc.
+- Read detailed articles with images
+- Post and delete comments
+- Navigate to individual article pages
+- Vote on articles
+
+---
+
+## 🚀 How to Run the Project Locally
+
+### ✅ Prerequisites
+
+- **Node.js** version **18+**
+
+🛠️ Installation Steps
+
+## Clone the repository:
+
+git clone https://github.com/kozadireza/nc-news-frontend.git
+
+## Navigate into the project folder:
+
+cd nc-news-frontend
+
+## Install dependencies:
+
+npm install
+
+## Start the development server:
+
+npm run dev
+Open your browser and go to:
+👉 http://localhost:5173
+
+**Tech Stack**
+
+- React (Vite)
+- React Router
+- Axios
+- Netlify for deployment
+- Node.js / Express / PostgreSQL for the backend (see backend repo)
+
+**Features**
+✅ Dynamic topic filtering
+
+✅ Sorting options (by date, votes, comments)
+
+✅ Voting system for articles
+
+✅ Comments section (read, post, delete)
+
+✅ Responsive design
+
+## About This Project
+
+This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by Northcoders.
