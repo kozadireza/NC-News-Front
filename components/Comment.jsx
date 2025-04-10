@@ -1,14 +1,18 @@
 import { useContext } from "react";
 import { UserDataContext } from "../COntexts/UserDataContext";
+import { deleteComment } from "../Utils/data.fetching";
 
-function Comment({ comment, setActiveCommentID }) {
+function Comment({ comment, removeComment }) {
   const { user } = useContext(UserDataContext);
 
-  function handleActiveCommentID() {
-    if (comment.author === user.username) {
-      setActiveCommentID(comment.comment_id);
-    } else {
-      alert("unable to delete comment!");
+  async function handleActiveCommentID() {
+    if (comment.comment_id !== null) {
+      try {
+        await deleteComment(comment.comment_id);
+        removeComment(comment.comment_id);
+      } catch {
+        alert("Delete failed !");
+      }
     }
   }
   return (
@@ -20,7 +24,9 @@ function Comment({ comment, setActiveCommentID }) {
       </section>
       <section id="commentBody">
         <p>{comment.body}</p>
-        <button onClick={handleActiveCommentID}>Delete comment</button>
+        {user.username === comment.author ? (
+          <button onClick={handleActiveCommentID}>Delete comment</button>
+        ) : null}
       </section>
     </div>
   );

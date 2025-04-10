@@ -8,6 +8,9 @@ function ArticleCard({ article }) {
 
   return (
     <article className="articleCard">
+      <h5>
+        Author: <a>{article.author}</a>{" "}
+      </h5>
       <Link to={`/articles/${article.article_id}`}>
         <h2>{article.title}</h2>
 
@@ -16,9 +19,6 @@ function ArticleCard({ article }) {
       <div>
         <h5>Topic: {article.topic}</h5>
 
-        <h5>
-          Author: <a>{article.author}</a>{" "}
-        </h5>
         <h5>
           Votes: <a>{article.votes}</a>{" "}
         </h5>

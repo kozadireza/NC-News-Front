@@ -29,8 +29,13 @@ function SortingAndFilteringBar({
   }
   return (
     <div>
-      <select onChange={handleSortBy} name="sortBy" id="sortBy">
-        <option selected disabled>
+      <select
+        onChange={handleSortBy}
+        name="sortBy"
+        id="sortBy"
+        defaultValue={filterAndSortParams.sort_by || "title"}
+      >
+        <option disabled value={"title"}>
           Sort By
         </option>
         <option value={"null"}>Not sorted</option>
@@ -42,12 +47,14 @@ function SortingAndFilteringBar({
           );
         })}
       </select>
-      <select onChange={handleOrder} name="order" id="order">
-        <option selected disabled>
-          Order
-        </option>
-        <option value="asc">ascending</option>
+      <select
+        onChange={handleOrder}
+        name="order"
+        id="order"
+        defaultValue={filterAndSortParams.order || "order"}
+      >
         <option value="desc">descending</option>
+        <option value="asc">ascending</option>
       </select>
     </div>
   );
