@@ -66,10 +66,19 @@ function CommentsList({ article_id }) {
     return <h1>Comment is posting....</h1>;
   }
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       {commentsLoading ? <p> Comments is Loading...</p> : null}
       {commentsError ? <p>Something went wrong!</p> : null}
-      <div>
+      <div
+        style={{
+          alignItems: "center",
+          width: "80%",
+          justifyContent: "center",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
         <button
           className="add-comment-button"
           onClick={() => setIsNewCommentFormVisible(!isNewCommentFormVisible)}
@@ -84,7 +93,12 @@ function CommentsList({ article_id }) {
             <button type="submit">Post</button>
           </form>
         ) : null}
-        <ul>
+        <ul
+          style={{
+            paddingLeft: "0px",
+            listStyle: "none",
+          }}
+        >
           {localComments.map((comment) => {
             return (
               <li key={comment.comment_id}>

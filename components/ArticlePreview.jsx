@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserByName } from "../Utils/data.fetching";
-import { convertData } from "../Utils/other";
+import { convertDate } from "../Utils/other";
 
 function ArticlePreview({ article }) {
   const [user, setUser] = useState("");
@@ -31,7 +31,7 @@ function ArticlePreview({ article }) {
         <h5>{article.author} </h5>
         <h6 style={{ paddingLeft: "5px" }}>
           {" "}
-          {convertData(article.created_at)}
+          {convertDate(article.created_at)}
         </h6>
       </div>
       <div
@@ -48,7 +48,12 @@ function ArticlePreview({ article }) {
 
         <div className="container-title-infoBar">
           <div className="titlePreview-Container">
-            <h3 className="titlePreview">{article.title}</h3>
+            <h3
+              className="titlePreview"
+              style={{ marginTop: "0px", marginBottom: "0px" }}
+            >
+              {article.title}
+            </h3>
           </div>
           <div className="navArticle">
             <h5
@@ -57,18 +62,24 @@ function ArticlePreview({ article }) {
                 display: "flex",
                 alignContent: "flex-end",
                 alignItems: "center",
+                marginTop: "0px",
+                marginBottom: "0px",
               }}
             >
               Topic: <a href={`/topics/${article.topic}`}>{article.topic}</a>
             </h5>
-            <h5>Votes: {article.votes}</h5>
-            <h5>Comments: {article.article_comments}</h5>
+            <h5 style={{ marginTop: "0px", marginBottom: "0px" }}>
+              Votes: {article.votes}
+            </h5>
+            <h5 style={{ marginTop: "0px", marginBottom: "0px" }}>
+              Comments: {article.article_comments}
+            </h5>
             <button
               style={{
                 height: "fit-content",
                 display: "flex",
                 alignContent: "flex-end",
-                top: "19px",
+
                 position: "relative",
               }}
               onClick={() => navigate(`/articles/${article.article_id}`)}

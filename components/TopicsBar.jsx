@@ -15,16 +15,7 @@ function TopicsBar() {
   return (
     <div className="container-Topics">
       <div>
-        <h3
-          style={{
-            width: "170px",
-            display: "flex",
-            position: "fixed",
-            justifyContent: "center",
-          }}
-        >
-          Topics
-        </h3>
+        <h3 className="topicTopic">Topics</h3>
       </div>
       <div className="topicsContainer">
         {listOfTopic.map((topic) => (

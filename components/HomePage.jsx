@@ -19,7 +19,7 @@ function HomePage({ filterAndSortParams, setFilterAndSortParams }) {
     return <h1>Something went wrong!</h1>;
   }
   return (
-    <main style={{ width: "100%", gap: "7%" }}>
+    <main style={{ width: "100%", gap: "2%" }}>
       <TopicsBar />
 
       <div className="articlesAndSortingBar">

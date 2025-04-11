@@ -77,7 +77,7 @@ function ArticlePage() {
     return <ErrorPage />;
   }
   return (
-    <main style={{ gap: "1%", paddingRight: "10%", paddingLeft: "10%" }}>
+    <main style={{ gap: "1%", width: "100%", justifyContent: "space-evenly" }}>
       <TopicsBar />
       <div className="articlePage-body">
         <div className="gallery">
@@ -100,14 +100,7 @@ function ArticlePage() {
             </h5>
 
             <h5 className="navElements">Votes: {totalVotes}</h5>
-            <h5
-              style={{
-                display: "flex",
-                position: "relative",
-                fontFamily: "Courier New, Courier, monospace",
-                fontSize: "x-large",
-              }}
-            >
+            <h5 className="commentsInArticleBar">
               Comments: {article.comment_count}
             </h5>
             <button onClick={handle1Vote} id="likeButton">

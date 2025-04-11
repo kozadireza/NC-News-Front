@@ -24,11 +24,17 @@ function ArticlesByTopicPage({ filterAndSortParams, setFilterAndSortParams }) {
   }
 
   return (
-    <main>
+    <main style={{ width: "100%" }}>
       <TopicsBar />
 
-      <div className="ArticlesBlock">
-        <div className="SortingAndFilteringBar">
+      <div className="ArticlesBlock" style={{ width: "80%" }}>
+        <div
+          className="SortingAndFilteringBar"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <SortingAndFilteringBar
             setFilterAndSortParams={setFilterAndSortParams}
             filterAndSortParams={filterAndSortParams}

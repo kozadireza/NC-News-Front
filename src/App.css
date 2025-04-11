@@ -8,11 +8,11 @@
 }
 html,
 body {
+  margin: 0;
+  padding: 0;
   width: 100%;
-  display: inline-block;
-  text-align: center;
-  margin: auto;
-  padding: auto;
+  box-sizing: border-box;
+  font-family: "p", sans-serif;
 }
 header {
   justify-content: space-around;
@@ -23,7 +23,7 @@ header {
 main {
   display: flex;
   border: solid 4px rgb(4, 255, 0);
-  justify-content: center;
+  justify-content: space-between;
   /* gap: 5px; */
   flex-direction: row;
 }
@@ -85,6 +85,13 @@ h2 {
   display: flex;
   flex-direction: column;
   padding: 0px;
+  width: 90%;
+}
+.topicTopic {
+  width: 170px;
+  display: flex;
+  position: fixed;
+  justify-content: center;
 }
 .topicsContainer {
   width: 174px;
@@ -120,7 +127,9 @@ h2 {
   justify-content: space-evenly;
 }
 .navElements {
-  margin-bottom: 5px;
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   font-family: "Courier New", Courier, monospace;
   font-size: 24px;
   display: inline-block;
@@ -179,13 +188,13 @@ h2 {
   display: flex;
 
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
 }
 
 #article_body {
   display: flex;
-  /* margin-left: 10%; */
-  width: 100%;
+  margin-left: 10%;
+  width: 80%;
   flex-direction: row-reverse;
   justify-content: center;
 }
@@ -214,8 +223,14 @@ p {
   display: flex;
   justify-content: center;
   gap: 35px;
+  align-items: center;
 }
-
+.commentsInArticleBar {
+  display: "flex";
+  position: "relative";
+  font-family: "Courier New, Courier, monospace";
+  font-size: "large";
+}
 .AuthorAndDateLine {
   transition: "transform 0.1s ease, box-shadow 0.3s ease";
   height: 30px;
@@ -231,13 +246,133 @@ p {
     margin: 6px 0;
   }
   .topicsContainer {
-    width: 120px;
+    width: 100px;
     top: 213px;
     position: fixed;
     display: flex;
     flex-direction: column;
     gap: 8px;
     align-items: stretch;
+  }
+  .topicName {
+    background-color: #80808017;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    font-family: monospace;
+    font-size: medium;
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+  }
+  .container-Topics {
+    width: 100px;
+    border: solid;
+    border-color: #0000004d;
+  }
+  .articlesAndSortingBar {
+    width: 81%;
+  }
+  main {
+    display: flex;
+    border: solid 4px rgb(4, 255, 0);
+    justify-content: space-between;
+    /* gap: 5px; */
+    flex-direction: row;
+  }
+  .navElements {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    display: inline-block;
+  }
+  h2 {
+    font-size: small;
+  }
+  p {
+    font-size: small;
+  }
+  h3 {
+    display: block;
+    font-size: 13pt;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+  }
+  h5 {
+    font-size: 8pt;
+  }
+  img {
+    height: 50px;
+  }
+  .topicTopic {
+    width: 100px;
+    display: flex;
+    position: fixed;
+    justify-content: center;
+  }
+  .imgPreview {
+    flex-grow: 4;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+  }
+  .articlePage-body {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    width: 70%;
+  }
+  #likeButton {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    background-color: #e2e8f0; /* light gray */
+    color: black;
+    border: none;
+    border-radius: 9999px; /* full pill */
+    padding: 15px 15px 15px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    height: 30px;
+  }
+
+  .icon-button:hover {
+    background-color: #cbd5e1;
+  }
+  #navArticle {
+    display: flex;
+    padding: 0px;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .commentsInArticleBar {
+    display: "flex";
+    position: "relative";
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12pt;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .add-comment-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 20px;
+    border: 2px solid #cbd5e1;
+    background-color: white;
+    color: black;
+    border-radius: 9999px;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
   }
 }
 
@@ -253,5 +388,11 @@ p {
     flex-direction: column;
     gap: 8px;
     align-items: stretch;
+  }
+  .topicTopic {
+    width: 100px;
+    display: flex;
+    position: fixed;
+    justify-content: center;
   }
 }

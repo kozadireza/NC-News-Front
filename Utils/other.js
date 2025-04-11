@@ -1,4 +1,4 @@
-export const convertData = (string) => {
+export const convertDate = (string) => {
   const data = string.slice(0, 10);
   return data;
 };
