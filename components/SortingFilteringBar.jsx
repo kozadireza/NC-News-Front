@@ -28,7 +28,7 @@ function SortingAndFilteringBar({
     }
   }
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <select
         onChange={handleSortBy}
         name="sortBy"

@@ -75,7 +75,6 @@ function CommentsList({ article_id }) {
           width: "80%",
           justifyContent: "center",
           display: "flex",
-          alignItems: "center",
           flexDirection: "column",
         }}
       >
@@ -97,6 +96,9 @@ function CommentsList({ article_id }) {
           style={{
             paddingLeft: "0px",
             listStyle: "none",
+            display: "flex",
+            flexDirection: "column",
+            gap: "3px",
           }}
         >
           {localComments.map((comment) => {

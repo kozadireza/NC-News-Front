@@ -50,7 +50,16 @@ function LoginPage() {
   }, [localUserName]);
 
   return (
-    <main style={{ flexDirection: "column" }}>
+    <main
+      style={{
+        flexDirection: "column",
+        display: "flex",
+        justifyContent: "center",
+        borderTop: "solid 2px #0000004d",
+        alignItems: "center",
+        height: "400px",
+      }}
+    >
       <h2>Please log in!</h2>
       <form
         action="http://localhost:5173/"

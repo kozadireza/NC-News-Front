@@ -17,16 +17,60 @@ function Comment({ comment, removeComment }) {
     }
   }
   return (
-    <div>
+    <div style={{ border: "solid 1px grey" }}>
       <section id="commentInfo">
-        <h5>Author: {comment.author}</h5>
-        <h5>Created at: {convertDate(comment.created_at)}</h5>
-        <h5>Votes: {comment.votes}</h5>
+        <h5
+          style={{
+            display: "flex",
+            marginBottom: "0px",
+
+            alignItems: "center",
+          }}
+        >
+          Author: {comment.author}
+        </h5>
+        <h5
+          style={{
+            display: "flex",
+            marginBottom: "0px",
+
+            alignItems: "center",
+          }}
+        >
+          Created at: {convertDate(comment.created_at)}
+        </h5>
+        <h5
+          style={{
+            display: "flex",
+            marginBottom: "0px",
+
+            alignItems: "center",
+          }}
+        >
+          Votes: {comment.votes}
+        </h5>
       </section>
       <section id="commentBody">
-        <p>{comment.body}</p>
+        <p
+          style={{
+            display: "flex",
+            marginBottom: "0px",
+            marginTop: "0px",
+            alignItems: "center",
+            backgroundColor: "#05498429",
+            fontFamily: "monospace",
+            fontSize: "large",
+          }}
+        >
+          {comment.body}
+        </p>
         {user.username === comment.author ? (
-          <button onClick={handleActiveCommentID}>Delete comment</button>
+          <button
+            style={{ display: "flex", alignItems: "center" }}
+            onClick={handleActiveCommentID}
+          >
+            Delete comment
+          </button>
         ) : null}
       </section>
     </div>

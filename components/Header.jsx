@@ -40,9 +40,23 @@ function Header({ setFilterAndSortParams }) {
       </h1>
       <div>
         {user === "unauthorised" ? (
-          <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
             <div className="userIconLogin" onClick={handleLogin}></div>
-            <div onClick={handleLogin}>Login</div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+              onClick={handleLogin}
+            >
+              Login
+            </div>
           </div>
         ) : (
           <div>
@@ -60,7 +74,15 @@ function Header({ setFilterAndSortParams }) {
                 borderRadius: "50%",
               }}
             ></div>
-            <div onClick={handleLogout}>Logout</div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+              onClick={handleLogout}
+            >
+              Logout
+            </div>
           </div>
         )}
       </div>

@@ -22,8 +22,8 @@ header {
 }
 main {
   display: flex;
-  border: solid 4px rgb(4, 255, 0);
   justify-content: space-between;
+  border-top: solid 2px #0000004d;
   /* gap: 5px; */
   flex-direction: row;
 }
@@ -37,7 +37,8 @@ h2 {
 
 .container-Topics {
   width: 200px;
-  border: solid;
+  border-right: solid;
+  border-left: solid;
   border-color: #0000004d;
 }
 .topicName {
@@ -94,7 +95,7 @@ h2 {
   justify-content: center;
 }
 .topicsContainer {
-  width: 174px;
+  width: 183px;
   top: 213px;
   position: fixed;
 
@@ -113,7 +114,9 @@ h2 {
   width: 80%;
 }
 .articleCard {
-  /* border: solid 4px rgb(0, 255, 30); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .articleCard > img {
   max-width: 100%;
@@ -193,10 +196,10 @@ h2 {
 
 #article_body {
   display: flex;
-  margin-left: 10%;
-  width: 80%;
+  width: 100%;
   flex-direction: row-reverse;
   justify-content: center;
+  align-items: center;
 }
 
 p {
@@ -210,7 +213,7 @@ p {
   width: 100%;
   flex-wrap: nowrap;
   justify-content: space-evenly;
-  background-color: azure;
+  /* background-color: rgb(130, 130, 130); */
 }
 .inputErr {
   margin-top: 0px;
@@ -264,8 +267,10 @@ p {
     transition: transform 0.1s ease, box-shadow 0.3s ease;
   }
   .container-Topics {
+    border-right: solid;
+    border-left: solid;
     width: 100px;
-    border: solid;
+
     border-color: #0000004d;
   }
   .articlesAndSortingBar {
@@ -273,7 +278,7 @@ p {
   }
   main {
     display: flex;
-    border: solid 4px rgb(4, 255, 0);
+    border-top: solid 2px rgb(141, 141, 141);
     justify-content: space-between;
     /* gap: 5px; */
     flex-direction: row;

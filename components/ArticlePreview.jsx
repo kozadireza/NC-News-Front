@@ -14,9 +14,9 @@ function ArticlePreview({ article }) {
     };
     getUserData(article.author);
   }, []);
-  console.log(user.avatar_url);
+
   return (
-    <div className="fullArticlePreview">
+    <div className="fullArticlePreview" alt="article preview">
       <div className="AuthorAndDateLine">
         <div
           style={{
@@ -27,6 +27,7 @@ function ArticlePreview({ article }) {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
           }}
+          alt={article.title}
         ></div>
         <h5>{article.author} </h5>
         <h6 style={{ paddingLeft: "5px" }}>
