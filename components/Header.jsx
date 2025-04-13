@@ -1,11 +1,12 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserDataContext } from "../COntexts/UserDataContext";
-
+import logo from "../assets/Buttons/preview.png";
 useNavigate;
 function Header({ setFilterAndSortParams }) {
   const nav = useNavigate();
   const { user, setUser } = useContext(UserDataContext);
+
   function handleLogin() {
     nav("/login_page");
   }
@@ -16,17 +17,75 @@ function Header({ setFilterAndSortParams }) {
     setFilterAndSortParams({ order: null, topic: null, sort_by: null });
     nav("/");
   }
+  console.log(user.avatar_url);
   return (
     <header>
-      <button onClick={handleHomePage}>HomePage</button>
+      <Link to="/">
+        <div
+          className="logo"
+          onClick={handleHomePage}
+          style={{
+            backgroundImage: `url(${logo})`,
+            height: "150px",
+            width: "150px",
+            padding: "0px",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        ></div>
+      </Link>
+
       <h1>
         Welcome {user !== "unauthorised" ? user.username : null} to NC News
       </h1>
-      {user === "unauthorised" ? (
-        <button onClick={handleLogin}>Login</button>
-      ) : (
-        <button onClick={handleLogout}>Logout</button>
-      )}
+      <div>
+        {user === "unauthorised" ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            <div className="userIconLogin" onClick={handleLogin}></div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+              onClick={handleLogin}
+            >
+              Login
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div
+              className="userFrame"
+              onClick={handleLogout}
+              style={{
+                cursor: "pointer",
+                backgroundImage: `url(${user.avatar_url})`,
+                height: "80px",
+                width: "80px",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                borderRadius: "50%",
+              }}
+            ></div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+              onClick={handleLogout}
+            >
+              Logout
+            </div>
+          </div>
+        )}
+      </div>
     </header>
   );
 }

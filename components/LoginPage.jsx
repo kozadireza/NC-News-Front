@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { UserDataContext } from "../COntexts/UserDataContext";
-import useDataApi from "../hooks/fetchData";
-import functions from "../Utils/data.fetching";
+
 import { useNavigate } from "react-router-dom";
+import { getUserByName } from "../Utils/data.fetching";
 
 function LoginPage() {
   const navigate = useNavigate();
-  const { user, setUser } = useContext(UserDataContext);
+  const { setUser } = useContext(UserDataContext);
 
   const [isInputValid, setIsInputValid] = useState(true);
   const [localUserName, setLocalUserName] = useState("");
@@ -35,10 +35,10 @@ function LoginPage() {
     if (localUserName.length > 0) {
       async function getUserInf(localUserName) {
         try {
-          const userInf = await functions.getUserByName(localUserName);
+          const userInf = await getUserByName(localUserName);
           setUser(userInf);
           navigate("/");
-        } catch (err) {
+        } catch {
           setIsUserExist(false);
         }
       }
@@ -50,7 +50,16 @@ function LoginPage() {
   }, [localUserName]);
 
   return (
-    <main>
+    <main
+      style={{
+        flexDirection: "column",
+        display: "flex",
+        justifyContent: "center",
+        borderTop: "solid 2px #0000004d",
+        alignItems: "center",
+        height: "400px",
+      }}
+    >
       <h2>Please log in!</h2>
       <form
         action="http://localhost:5173/"

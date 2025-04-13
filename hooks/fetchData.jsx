@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import functions from "../Utils/data.fetching";
+import { getArticles } from "../Utils/data.fetching";
 
 function useDataApi(filterAndSortParams) {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +12,7 @@ function useDataApi(filterAndSortParams) {
       setIsError(false);
       setIsLoading(true);
       try {
-        const data = await functions.getArticles(filterAndSortParams);
+        const data = await getArticles(filterAndSortParams);
         setData(data);
       } catch (err) {
         setIsError(true);

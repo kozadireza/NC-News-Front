@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import functions from "../Utils/data.fetching";
+import { getComments } from "../Utils/data.fetching";
 
 function useFetchComments(articleID) {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +11,7 @@ function useFetchComments(articleID) {
       setIsError(false);
       setIsLoading(true);
       try {
-        const data = await functions.getComments(articleID);
+        const data = await getComments(articleID);
         setData(data);
       } catch (err) {
         setIsError(true);

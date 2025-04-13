@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import Header from "../components/Header";
 import "./App.css";
-import HomePage from "../components/Home Page";
-import ArticlesPage from "../components/Articles Page";
+import HomePage from "../components/HomePage";
+
 import { UserDataProvider } from "../COntexts/UserDataContext";
-import ArticlePage from "../components/Article Page";
-import LoginPage from "../components/Login Page";
+import ArticlePage from "../components/ArticlePage";
+import LoginPage from "../components/LoginPage";
 import { useState } from "react";
-import ArticlesByTopicPage from "../components/Articles Page";
-import SortingAndFilteringBar from "../components/SortingFilteringBar";
+import ArticlesByTopicPage from "../components/ArticlesByTopicPage";
+
 import ErrorPage from "../components/ErrorPage";
 
 function App() {
